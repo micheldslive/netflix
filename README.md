@@ -1,4 +1,4 @@
-# Netflix
+# <img src="https://github.com/micheldslive/netflix/blob/master/public/logo192.png" width="25" /> Netflix
 
 ![https://github.com/micheldslive/netflix/blob/master/demo/demo.jpg](https://github.com/micheldslive/netflix/blob/master/demo/demo.jpg)
 
