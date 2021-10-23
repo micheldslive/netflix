@@ -700,7 +700,7 @@ section {
 }
 
 .main-error::after {
-  background: url("../images/bg-lost-in-space.png");
+  background: url("../images/bg-lost-in-space.jpg");
   background-attachment: fixed;
   background-position: center;
   background-repeat: no-repeat;
