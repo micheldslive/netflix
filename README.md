@@ -2,7 +2,7 @@
 
 ![https://github.com/micheldslive/netflix/blob/master/demo/demo.jpg](https://github.com/micheldslive/netflix/blob/master/demo/demo.jpg)
 
-Você pode acessar o projeto clicando [aqui.](https://mynetflix.vercel.app/)
+Você pode acessar o projeto clicando [aqui.](https://minhanetflix.vercel.app/)
 
 ## 📖 Sobre
 
@@ -27,7 +27,7 @@ Esse projeto foi desenvolvido com:
 
 ![https://github.com/micheldslive/netflix/blob/master/demo/demo.gif](https://github.com/micheldslive/netflix/blob/master/demo/demo.gif)
 
-Você pode acessar o projeto clicando [aqui.](https://mynetflix.vercel.app/)
+Você pode acessar o projeto clicando [aqui.](https://minhanetflix.vercel.app/)
 
 ---
 
