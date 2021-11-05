@@ -48,6 +48,8 @@ Esse projeto foi desenvolvido com a seguinte tecnologia e suas dependencias:
 - SASS
 - Typescript
 
+---
+
 ## ▶️ Executando o projeto
 
 #### Clone o repositório usando o seguinte comando ou baixe
