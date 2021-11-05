@@ -37,7 +37,7 @@ Site composto por 3 seções:
 ---
 
 ## 🚀 Tecnologias utilizadas
-Esse projeto foi desenvolvido com a seguinte tecnologia e suas dependencias:
+Esse projeto foi desenvolvido com as seguintes tecnologias e suas dependencias:
 
 - ReactJS
     - react-bootstrap
