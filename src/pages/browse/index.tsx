@@ -13,19 +13,19 @@ interface Avatar {
 
 export default class Browse extends Component<Avatar> {
   state = {
-    num: 0,
+    random: 0,
   };
 
   componentDidMount = () => {
-    const num = Math.floor(Math.random() * 3);
-    this.setState({ num: num });
+    const numberRandom = Math.floor(Math.random() * 3);
+    this.setState({ random: numberRandom });
   };
 
   render() {
     const user = this.props.user;
     const userPreload = this.props.preload;
     const avatar = profiles[user - 1]?.avatar;
-    const { bg, logo } = main[this.state.num];
+    const { bg, logo } = main[this.state.random];
     const { play, info } = buttons[0];
 
     setTimeout(() => {
