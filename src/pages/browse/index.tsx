@@ -1,36 +1,30 @@
 import { Component } from "react";
 import { profiles } from "services/profiles";
 import { Helmet } from "react-helmet-async";
+import { ReduxType } from "reducer/types";
+import { connect } from "react-redux";
+import { mapDispatchToProps, mapStateToProps } from "reducer/maps";
 import { buttons, main } from "services/browse";
 import { Popular, High, Watched } from "components/cards";
 import Footer from "components/footer";
 
-interface Avatar {
-  user: number;
-  preload: number;
-  setPreload: any;
-}
-
-export default class Browse extends Component<Avatar> {
-  state = {
-    random: 0,
-  };
-
+class Browse extends Component<ReduxType> {
   componentDidMount = () => {
-    const numberRandom = Math.floor(Math.random() * 3);
-    this.setState({ random: numberRandom });
+    const { user } = this.props.state,
+      numberRandom = Math.floor(Math.random() * 3);
+
+    this.props.setRandom({ random: numberRandom });
+    
+    setTimeout(() => {
+      this.props.setPreload({ preload: user });
+    }, 5300);
   };
 
   render() {
-    const user = this.props.user;
-    const userPreload = this.props.preload;
-    const avatar = profiles[user - 1]?.avatar;
-    const { bg, logo } = main[this.state.random];
-    const { play, info } = buttons[0];
-
-    setTimeout(() => {
-      this.props.setPreload(this.props.user);
-    }, 5300);
+    const { user, preload, random } = this.props.state,
+      avatar = profiles[(user as number) - 1]?.avatar,
+      { bg, logo } = main[random as number],
+      { play, info } = buttons;
 
     return (
       <>
@@ -38,7 +32,7 @@ export default class Browse extends Component<Avatar> {
           <title>Início - Netflix</title>
           <meta name="description" content="Início - Netflix" />
         </Helmet>
-        {userPreload !== user ? (
+        {preload !== user ? (
           <div className="preloader-bg">
             <section className="main-content">
               <div className="profiles-container preloader">
@@ -97,3 +91,5 @@ export default class Browse extends Component<Avatar> {
     );
   }
 }
+
+export default connect(mapStateToProps, mapDispatchToProps)(Browse);

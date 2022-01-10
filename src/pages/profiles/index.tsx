@@ -1,21 +1,19 @@
 import { Component } from "react";
-import { Link } from "react-router-dom";
+import { connect } from "react-redux";
+import { mapDispatchToProps, mapStateToProps } from "reducer/maps";
+import { ReduxType } from "reducer/types";
 import { profiles } from "services/profiles";
+import { Link } from "react-router-dom";
 
-interface Avatar {
-  user: number;
-  setUser: any;
-}
-
-export default class Profiles extends Component< Avatar > {
-  constructor(props: Avatar) {
+class Profiles extends Component<ReduxType> {
+  constructor(props: ReduxType) {
     super(props);
 
     this.handleClick = this.handleClick.bind(this);
   }
 
   handleClick(id: number): void {
-    this.props.setUser(id);
+    this.props.setUser({ user: id });
   }
 
   render() {
@@ -40,3 +38,5 @@ export default class Profiles extends Component< Avatar > {
     );
   }
 }
+
+export default connect(mapStateToProps, mapDispatchToProps)(Profiles);

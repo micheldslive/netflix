@@ -1,39 +1,33 @@
 import { Component } from "react";
+import { connect } from "react-redux";
 import { Link, NavLink } from "react-router-dom";
+import { mapDispatchToProps, mapStateToProps } from "reducer/maps";
+import { ReduxType } from "reducer/types";
 import { menu } from "services/header";
 import { profiles } from "services/profiles";
 
-interface Props {
-  user: number;
-  setUser: any;
-  preload: number;
-  setPreload: any;
-  scroll: boolean;
-}
-
-export default class Header extends Component<Props> {
-  constructor(props: Props) {
+class Header extends Component<ReduxType> {
+  constructor(props: ReduxType) {
     super(props);
     this.userClick = this.userClick.bind(this);
     this.preClick = this.preClick.bind(this);
   }
 
   userClick(id: number): void {
-    this.props.setUser(id);
+    this.props.setUser({ user: id });
   }
   preClick(): void {
-    this.props.setPreload(-1);
-    this.props.setUser(0);
+    this.props.setPreload({preload: -1});
+    this.props.setUser({user: 0});
   }
 
   render() {
-    const user = this.props.user,
-      preloader = this.props.preload,
-      currentAvatar = profiles[this.props.user - 1]?.avatar,
-      scroll = this.props.scroll;
+
+    const { user, preload } = this.props.state,
+      currentAvatar = profiles[user as number - 1]?.avatar;
 
     return (
-      <header className={scroll ? "header-content sticky" : "header-content"}>
+      <header className="header-content">
         <section className="header-container">
           <div className="nav-primary">
             <NavLink
@@ -43,14 +37,14 @@ export default class Header extends Component<Props> {
               activeClassName="active"
             />
             <div className="nav-menu-content">
-              {preloader === user ? 
+              {preload === user ? 
                 <span className="nav-menu-link">
                   Navegar <span className="arrow-nav"></span>
                 </span>
                : ""
               }
               <nav className="nav-menu">
-                {preloader === user
+                {preload === user
                   ? menu.map(({ id, name, to }) => 
                       <NavLink key={id} exact to={to} activeClassName="active">
                         {name}
@@ -61,7 +55,7 @@ export default class Header extends Component<Props> {
               </nav>
             </div>
           </div>
-          {preloader === user ?
+          {preload === user ?
             <div className="nav-secundary">
               <div className="nav-item">
                 <div className="account-menu">
@@ -119,3 +113,5 @@ export default class Header extends Component<Props> {
     );
   }
 }
+
+export default connect(mapStateToProps, mapDispatchToProps)(Header);

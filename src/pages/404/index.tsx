@@ -1,16 +1,14 @@
 import { Component } from "react";
 import { Link } from "react-router-dom";
 import { Helmet } from "react-helmet-async";
+import { ReduxType } from "reducer/types";
+import { connect } from "react-redux";
+import { mapDispatchToProps, mapStateToProps } from "reducer/maps";
 
-interface Props {
-  setUser: any;
-  setPreload: any;
-}
-
-export default class NotFound extends Component<Props> {
+class NotFound extends Component<ReduxType> {
   componentDidMount = () => {
-    this.props.setUser(0);
-    this.props.setPreload(-1);
+    this.props.setUser({user: 0});
+    this.props.setPreload({preload: -1});
   };
 
   render() {
@@ -33,3 +31,5 @@ export default class NotFound extends Component<Props> {
     );
   }
 }
+
+export default connect(mapStateToProps, mapDispatchToProps)(NotFound);

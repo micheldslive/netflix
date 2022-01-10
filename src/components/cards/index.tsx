@@ -4,31 +4,27 @@ import { cards } from "services/cards";
 import { settings } from "services/settings";
 import "slick-carousel/slick/slick.css";
 
-class SliderContent extends Component {
-  render() {
-    const shuffle = (array: { id: number; card: string; name: string }[]) => {
-      for (let i = array.length - 1; i > 0; i--) {
-        const radom = Math.floor(Math.random() * (i + 1));
-        const temp = array[i];
-        array[i] = array[radom];
-        array[radom] = temp;
-      }
-      return array;
-    };
+const SliderContent = () => {
+  const shuffle = (array: { id: number; card: string; name: string }[]) => {
+    for (let i = array.length - 1; i > 0; i--) {
+      const radom = Math.floor(Math.random() * (i + 1));
+      const temp = array[i];
+      array[i] = array[radom];
+      array[radom] = temp;
+    }
+    return array;
+  };
 
-    const shuffledCards = [shuffle(cards)][0];
-
-    return (
-      <Slider {...settings}>
-        {shuffledCards.map(({ id, card, name }) => (
-          <span className="card" key={id}>
-            <img className="card-image" src={card} alt={name} />
-          </span>
-        ))}
-      </Slider>
-    );
-  }
-}
+  return (
+    <Slider {...settings}>
+      {[shuffle(cards)][0].map(({ id, card, name }) => (
+        <span className="card" key={id}>
+          <img className="card-image" src={card} alt={name} />
+        </span>
+      ))}
+    </Slider>
+  );
+};
 
 export class Popular extends Component {
   render() {

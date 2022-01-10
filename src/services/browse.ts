@@ -7,7 +7,12 @@ import insidersLogo from "assets/images/films/insiders-logo.webp";
 import play from "assets/images/play-icon.svg";
 import info from "assets/images/info-icon.svg";
 
-export const main: { id: number; bg: string; logo: string; synopsis: string; }[] = [
+export const main: {
+  id: number;
+  bg: string;
+  logo: string;
+  synopsis: string;
+}[] = [
   {
     id: 1,
     bg: patrulhaBG,
@@ -31,9 +36,7 @@ export const main: { id: number; bg: string; logo: string; synopsis: string; }[]
   },
 ];
 
-export const buttons: { play: string; info: string }[] = [
-  {
-    play: play,
-    info: info,
-  },
-];
+export const buttons: { play: string; info: string } = {
+  play: play,
+  info: info,
+};
