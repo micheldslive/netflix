@@ -1,41 +1,18 @@
 import thunk from "redux-thunk";
 import { createStore, applyMiddleware, Store } from "redux";
-import {
-  SET_USER,
-  SET_PRELOAD,
-  SET_RANDOM,
-  Action,
-  DispatchType,
-  State,
-} from "reducer/types";
+import { Action, DispatchType, State } from "reducer/types";
+import { reducer } from "reducer/state";
+import { persistStore, persistReducer } from "redux-persist";
+import storage from "redux-persist/lib/storage";
 
-const initialState = {
-  user: 0,
-  preload: -1,
-  random: 0,
+const persistConfig = {
+  key: "netflix",
+  storage,
 };
 
-const reducer = (state: State = initialState, action: Action) => {
-  switch (action.type) {
-    case SET_USER:
-      return {
-        ...state,
-        user: action.state.user,
-      };
+const persistedReducer = persistReducer(persistConfig, reducer);
 
-    case SET_PRELOAD:
-      return {
-        ...state,
-        preload: action.state.preload,
-      };
+export const store: Store<State, Action> & { dispatch: DispatchType } =
+  createStore(persistedReducer, applyMiddleware(thunk));
 
-    case SET_RANDOM:
-      return {
-        ...state,
-        random: action.state.random,
-      };
-  }
-  return state;
-};
-
-export const store: Store<State, Action> & { dispatch: DispatchType } = createStore(reducer, applyMiddleware(thunk));
+export const persistor = persistStore(store);
